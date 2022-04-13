@@ -1,6 +1,6 @@
 # This project is for practicing with React
 
-# Keeper
+# Login form
 
 #To see another example, go to another branch
 

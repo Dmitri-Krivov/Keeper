@@ -1,44 +1,54 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: ""
+  });
 
-  function addNote(newNote) {
-    setNotes((prevNotes) => {
-      return [...prevNotes, newNote];
-    });
-  }
+  function handleChange(event) {
+    const { value, name } = event.target;
+    console.log(value, name+"---");
 
-  function deleteNote(id) {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((noteItem, index) => {
-        return index !== id;
-      });
+    setContact((prevValue) => {
+      console.log(prevValue);
+      return {
+        ...prevValue,
+        [name]: value
+      };
+
     });
   }
 
   return (
-    <div>
-      <Header />
-      <CreateArea onAdd={addNote} />
-      {notes.map((noteItem, index) => {
-        return (
-          <Note
-            key={index}
-            id={index}
-            title={noteItem.title}
-            content={noteItem.content}
-            onDelete={deleteNote}
-          />
-        );
-      })}
-      <Footer />
+    <div className="container">
+      <h1>
+        Hello {contact.fName} {contact.lName}
+      </h1>
+      <p>{contact.email}</p>
+      <form>
+        <input
+          name="fName"
+          value={contact.fName}
+          placeholder="First Name"
+          onChange={handleChange}
+        />
+        <input
+          name="lName"
+          value={contact.lName}
+          placeholder="Last Name"
+          onChange={handleChange}
+        />
+        <input
+          name="email"
+          value={contact.email}
+          placeholder="Email"
+          onChange={handleChange}
+        />
+        <button onClick={(event) => event.preventDefault()}>Submit</button>
+      </form>
     </div>
   );
 }
-
 export default App;
