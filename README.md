@@ -1,6 +1,6 @@
 # This project is for practicing with React
 
-# Keeper
+# Todo list
 
 #To see another example, go to another branch
 
